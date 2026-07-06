@@ -1,0 +1,11 @@
+{
+  "name": "design-system-test",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A design-token pipeline experiment. Figma (Tokens Studio) is the source; this repo builds the consumable @design-system-test/tokens package.",
+  "scripts": {
+    "build": "node scripts/build-dist.mjs",
+    "tokens:dist": "node scripts/build-dist.mjs"
+  }
+}

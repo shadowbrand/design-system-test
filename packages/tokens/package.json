@@ -1,0 +1,17 @@
+{
+  "name": "@design-system-test/tokens",
+  "version": "0.1.0",
+  "description": "Design tokens built from Figma (via Tokens Studio) → tokens.json → these artifacts.",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "main": "./tokens.js",
+  "module": "./tokens.js",
+  "exports": {
+    ".": "./tokens.js",
+    "./css": "./tokens.css",
+    "./json": "./tokens.json"
+  },
+  "files": ["tokens.js", "tokens.css", "tokens.json"],
+  "sideEffects": ["*.css"]
+}
