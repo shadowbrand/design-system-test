@@ -1,4 +1,4 @@
-# @design-system-test/tokens
+# @shadowbrand/tokens
 
 The consumable build of the design tokens. Apps depend on **this package**, not on Figma
 and not on the raw source.
@@ -6,7 +6,7 @@ and not on the raw source.
 ## Where these come from
 
 ```
-Figma (Tokens Studio)  ──push──►  /tokens.json  ──npm run build──►  @design-system-test/tokens
+Figma (Tokens Studio)  ──push──►  /tokens.json  ──npm run build──►  @shadowbrand/tokens
       design authors               git = source of truth             what apps install
 ```
 
@@ -19,7 +19,7 @@ build runs in CI and publishes a versioned package; consumers just bump the vers
 **CSS** — import once, then reference variables:
 
 ```css
-@import "@design-system-test/tokens/css";
+@import "@shadowbrand/tokens/css";
 
 .card {
   background: var(--colors-neutral-default);
@@ -39,7 +39,7 @@ Composite type styles ship as utility classes too:
 **JS / TS** — import resolved values:
 
 ```js
-import { tokens } from "@design-system-test/tokens";
+import { tokens } from "@shadowbrand/tokens";
 tokens.colors.neutral.accent; // "#0059ff"
 tokens.typography.Display.fontSize; // "84px"
 ```

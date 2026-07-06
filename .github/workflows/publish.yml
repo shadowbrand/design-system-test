@@ -1,6 +1,6 @@
 name: Publish tokens
 
-# Publishes @design-system-test/tokens to npm when you cut a GitHub Release
+# Publishes @shadowbrand/tokens to npm when you cut a GitHub Release
 # (or run this workflow manually). Uses npm Trusted Publishing (OIDC): no npm
 # token is stored anywhere — the `id-token: write` permission below lets npm
 # verify the publish came from this exact repo + workflow.

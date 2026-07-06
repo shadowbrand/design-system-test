@@ -5,7 +5,7 @@ build into an artifact apps can consume. Its only job is to turn the source toke
 consumable package.
 
 ```
-Figma (Tokens Studio)  ──push──►  tokens.json  ──npm run build──►  packages/tokens  (@design-system-test/tokens)
+Figma (Tokens Studio)  ──push──►  tokens.json  ──npm run build──►  packages/tokens  (@shadowbrand/tokens)
       design authors               source of truth (git)            what apps install
 ```
 
