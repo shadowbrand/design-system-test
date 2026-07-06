@@ -2,8 +2,7 @@
   "name": "@design-system-test/tokens",
   "version": "0.1.0",
   "description": "Design tokens built from Figma (via Tokens Studio) → tokens.json → these artifacts.",
-  "license": "UNLICENSED",
-  "private": true,
+  "license": "MIT",
   "type": "module",
   "main": "./tokens.js",
   "module": "./tokens.js",
@@ -13,5 +12,16 @@
     "./json": "./tokens.json"
   },
   "files": ["tokens.js", "tokens.css", "tokens.json"],
-  "sideEffects": ["*.css"]
+  "sideEffects": ["*.css"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shadowbrand/design-system-test.git",
+    "directory": "packages/tokens"
+  },
+  "scripts": {
+    "prepublishOnly": "node ../../scripts/build-dist.mjs"
+  }
 }

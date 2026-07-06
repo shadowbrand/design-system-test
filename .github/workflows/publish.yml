@@ -1,0 +1,36 @@
+name: Publish tokens
+
+# Publishes @design-system-test/tokens to npm when you cut a GitHub Release
+# (or run this workflow manually). Uses npm Trusted Publishing (OIDC): no npm
+# token is stored anywhere — the `id-token: write` permission below lets npm
+# verify the publish came from this exact repo + workflow.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write        # required for trusted publishing (OIDC)
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+
+      # Trusted publishing needs npm >= 11.5.1; the runner may ship an older one.
+      - name: Update npm
+        run: npm install -g npm@latest
+
+      - name: Build the package from tokens.json
+        run: npm run build
+
+      - name: Publish (provenance is automatic with trusted publishing)
+        run: npm publish
+        working-directory: packages/tokens
