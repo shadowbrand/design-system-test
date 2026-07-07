@@ -1,0 +1,37 @@
+name: Checks
+
+# Guard from the root AGENTS.md: packages/ui/AGENTS.md is the hand-maintained
+# consumer agent index, so any change to the ui component source must update it
+# in the same PR/push. If the index rows are already accurate for your change,
+# touching the file (e.g. reviewing and re-saving it) is the acknowledgement.
+
+on:
+  pull_request:
+    paths: ["packages/ui/src/**"]
+  push:
+    branches: [main]
+    paths: ["packages/ui/src/**"]
+
+jobs:
+  ui-agents-index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: ui src changed → agent index must change too
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            git fetch origin "${{ github.base_ref }}"
+            RANGE="origin/${{ github.base_ref }}...HEAD"
+          else
+            RANGE="${{ github.event.before }}..${{ github.sha }}"
+          fi
+          CHANGED=$(git diff --name-only "$RANGE")
+          echo "$CHANGED"
+          if echo "$CHANGED" | grep -q '^packages/ui/src/' \
+            && ! echo "$CHANGED" | grep -qx 'packages/ui/AGENTS.md'; then
+            echo "::error file=packages/ui/AGENTS.md::packages/ui/src changed without updating the agent index (packages/ui/AGENTS.md). Update the component's row — or touch the file to confirm the index is still accurate."
+            exit 1
+          fi
