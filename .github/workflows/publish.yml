@@ -1,9 +1,9 @@
 name: Publish tokens
 
-# Publishes @shadowbrand/tokens to npm when you cut a GitHub Release
-# (or run this workflow manually). Uses npm Trusted Publishing (OIDC): no npm
-# token is stored anywhere — the `id-token: write` permission below lets npm
-# verify the publish came from this exact repo + workflow.
+# Run this workflow (or cut a Release) to publish @shadowbrand/tokens.
+# It AUTO-BUMPS the patch version every run, so you never have to touch the
+# version by hand — Tokens Studio only pushes tokens.json, this handles the rest.
+# Uses npm Trusted Publishing (OIDC): no npm token stored anywhere.
 
 on:
   release:
@@ -14,12 +14,14 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write        # to push the version bump back to main
       id-token: write        # required for trusted publishing (OIDC)
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: "22"
           registry-url: "https://registry.npmjs.org"
@@ -28,8 +30,21 @@ jobs:
       - name: Update npm
         run: npm install -g npm@latest
 
+      - name: Bump patch version
+        working-directory: packages/tokens
+        run: npm version patch --no-git-tag-version
+
       - name: Build the package from tokens.json
         run: npm run build
+
+      - name: Commit the version bump back to main
+        run: |
+          VERSION=$(node -p "require('./packages/tokens/package.json').version")
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "chore(release): tokens v${VERSION}"
+          git push
 
       - name: Publish (provenance is automatic with trusted publishing)
         run: npm publish
