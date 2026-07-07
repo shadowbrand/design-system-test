@@ -4,27 +4,28 @@ export const tokens = {
     "neutral": {
       "default": "#ffffff",
       "onDefault": "#000000",
-      "accent": "#0058ff",
+      "accent": "#0059ff",
       "muted": "#adadad"
     }
   },
   "spacing": {
-    "md": "20px",
-    "sm": "6px"
+    "xs": "6px",
+    "sm": "8px",
+    "md": "20px"
   },
   "fontFamilies": {
     "neue-haas-unica-w1g": "\"Neue Haas Unica W1G\""
   },
   "lineHeights": {
-    "0": "84px",
+    "0": "28px",
     "1": "55px",
-    "2": "normal"
+    "2": "84px"
   },
   "fontWeights": {
     "neue-haas-unica-w1g-0": "400"
   },
   "fontSize": {
-    "0": "20px",
+    "0": "22px",
     "1": "55px",
     "2": "84px"
   },
@@ -47,22 +48,25 @@ export const tokens = {
   },
   "typography": {
     "Display": {
+      "fontFamily": "\"Neue Haas Unica W1G\"",
       "fontWeight": "400",
       "fontSize": "84px",
       "lineHeight": "84px",
-      "fontFamily": "\"Neue Haas Unica W1G\""
+      "letterSpacing": "-0.05em"
     },
-    "Headline": {
+    "Heading": {
       "fontFamily": "\"Neue Haas Unica W1G\"",
       "fontWeight": "400",
       "fontSize": "55px",
-      "lineHeight": "55px"
+      "lineHeight": "55px",
+      "letterSpacing": "-0.01em"
     },
     "Body": {
       "fontFamily": "\"Neue Haas Unica W1G\"",
       "fontWeight": "400",
-      "fontSize": "20px",
-      "lineHeight": "normal"
+      "fontSize": "22px",
+      "lineHeight": "28px",
+      "letterSpacing": "0.01em"
     }
   }
 };

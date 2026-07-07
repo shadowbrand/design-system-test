@@ -39,6 +39,29 @@ const isTypography = (n) =>
   n && typeof n === 'object' && !isToken(n) &&
   (isToken(n.fontSize) || isToken(n.fontFamily) || isToken(n.lineHeight));
 
+// Tokens Studio typography tokens are composite: { $type:'typography', $value:{...} }.
+// Expand each into the per-property token form the rest of this build understands,
+// so one file serves both Figma (real type styles) and code (these sub-property vars).
+const TYPO_MAP = {
+  fontFamily: 'fontFamilies', fontWeight: 'fontWeights', fontSize: 'fontSizes',
+  lineHeight: 'lineHeights', letterSpacing: 'letterSpacing',
+  paragraphSpacing: 'paragraphSpacing', paragraphIndent: 'dimension',
+  textCase: 'textCase', textDecoration: 'textDecoration',
+};
+function normalizeTypography(node) {
+  if (!node || typeof node !== 'object') return node;
+  if (node.$type === 'typography' && node.$value && typeof node.$value === 'object') {
+    const out = {};
+    for (const [k, v] of Object.entries(node.$value)) out[k] = { $type: TYPO_MAP[k] || 'other', $value: v };
+    return out;
+  }
+  if ('$value' in node) return node;                 // regular token leaf
+  const out = {};
+  for (const [k, v] of Object.entries(node)) out[k] = k.startsWith('$') ? v : normalizeTypography(v);
+  return out;
+}
+const tree = normalizeTypography(mergeSets(source));
+
 // ---- flatten every leaf token to a path -> {value, type} map ---------------
 
 const flat = {};
@@ -50,7 +73,7 @@ const flat = {};
       collect(v, path ? `${path}.${k}` : k);
     }
   }
-})(mergeSets(source));
+})(tree);
 
 // Merge all top-level token sets into a single tree (supports future brand sets).
 function mergeSets(doc) {
@@ -108,7 +131,7 @@ function cssValue(token) {
 
 // ---- build CSS -------------------------------------------------------------
 
-const compositeRoots = Object.keys(mergeSets(source)).filter((k) => isTypography(mergeSets(source)[k]));
+const compositeRoots = Object.keys(tree).filter((k) => isTypography(tree[k]));
 const inComposite = (path) => compositeRoots.some((r) => path === r || path.startsWith(`${r}.`));
 const varNameFor = (path) => {
   if (!inComposite(path)) return cssVar(path);
@@ -153,7 +176,7 @@ function cleanTree(node) {
   }
   return out;
 }
-const resolved = cleanTree(mergeSets(source));
+const resolved = cleanTree(tree);
 
 // Group composite type styles under `typography` so consumers get tokens.typography.Display.
 if (compositeRoots.length) {

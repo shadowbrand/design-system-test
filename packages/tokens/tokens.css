@@ -4,16 +4,17 @@
 :root {
   --colors-neutral-default: #ffffff;
   --colors-neutral-on-default: #000000;
-  --colors-neutral-accent: #0058ff;
+  --colors-neutral-accent: #0059ff;
   --colors-neutral-muted: #adadad;
+  --spacing-xs: 6px;
+  --spacing-sm: 8px;
   --spacing-md: 20px;
-  --spacing-sm: 6px;
   --font-families-neue-haas-unica-w1g: "Neue Haas Unica W1G";
-  --line-heights-0: 84px;
+  --line-heights-0: 28px;
   --line-heights-1: 55px;
-  --line-heights-2: normal;
+  --line-heights-2: 84px;
   --font-weights-neue-haas-unica-w1g-0: 400;
-  --font-size-0: 20px;
+  --font-size-0: 22px;
   --font-size-1: 55px;
   --font-size-2: 84px;
   --letter-spacing-0: -0.05em;
@@ -23,33 +24,38 @@
   --text-case-none: none;
   --text-decoration-none: none;
   --paragraph-indent-0: 0px;
+  --typography-display-font-family: var(--font-families-neue-haas-unica-w1g);
   --typography-display-font-weight: var(--font-weights-neue-haas-unica-w1g-0);
   --typography-display-font-size: var(--font-size-2);
-  --typography-display-line-height: var(--line-heights-0);
-  --typography-display-font-family: var(--font-families-neue-haas-unica-w1g);
-  --typography-headline-font-family: var(--font-families-neue-haas-unica-w1g);
-  --typography-headline-font-weight: var(--font-weights-neue-haas-unica-w1g-0);
-  --typography-headline-font-size: var(--font-size-1);
-  --typography-headline-line-height: var(--line-heights-1);
+  --typography-display-line-height: var(--line-heights-2);
+  --typography-display-letter-spacing: var(--letter-spacing-0);
+  --typography-heading-font-family: var(--font-families-neue-haas-unica-w1g);
+  --typography-heading-font-weight: var(--font-weights-neue-haas-unica-w1g-0);
+  --typography-heading-font-size: var(--font-size-1);
+  --typography-heading-line-height: var(--line-heights-1);
+  --typography-heading-letter-spacing: var(--letter-spacing-1);
   --typography-body-font-family: var(--font-families-neue-haas-unica-w1g);
   --typography-body-font-weight: var(--font-weights-neue-haas-unica-w1g-0);
   --typography-body-font-size: var(--font-size-0);
-  --typography-body-line-height: var(--line-heights-2);
+  --typography-body-line-height: var(--line-heights-0);
+  --typography-body-letter-spacing: var(--letter-spacing-2);
 }
 
 /* Typography utilities */
 .text-display {
+  font-family: var(--typography-display-font-family);
   font-weight: var(--typography-display-font-weight);
   font-size: var(--typography-display-font-size);
   line-height: var(--typography-display-line-height);
-  font-family: var(--typography-display-font-family);
+  letter-spacing: var(--typography-display-letter-spacing);
 }
 
-.text-headline {
-  font-family: var(--typography-headline-font-family);
-  font-weight: var(--typography-headline-font-weight);
-  font-size: var(--typography-headline-font-size);
-  line-height: var(--typography-headline-line-height);
+.text-heading {
+  font-family: var(--typography-heading-font-family);
+  font-weight: var(--typography-heading-font-weight);
+  font-size: var(--typography-heading-font-size);
+  line-height: var(--typography-heading-line-height);
+  letter-spacing: var(--typography-heading-letter-spacing);
 }
 
 .text-body {
@@ -57,4 +63,5 @@
   font-weight: var(--typography-body-font-weight);
   font-size: var(--typography-body-font-size);
   line-height: var(--typography-body-line-height);
+  letter-spacing: var(--typography-body-letter-spacing);
 }

@@ -1,6 +1,6 @@
 {
   "name": "@shadowbrand/tokens",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Design tokens built from Figma (via Tokens Studio) → tokens.json → these artifacts.",
   "license": "MIT",
   "type": "module",
