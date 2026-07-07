@@ -14,7 +14,8 @@
   "files": [
     "tokens.js",
     "tokens.css",
-    "tokens.json"
+    "tokens.json",
+    "AGENTS.md"
   ],
   "sideEffects": [
     "*.css"

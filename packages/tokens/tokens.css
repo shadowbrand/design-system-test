@@ -5,7 +5,7 @@
   --colors-neutral-default: #ffffff;
   --colors-neutral-on-default: #000000;
   --colors-neutral-accent: #0059ff;
-  --colors-neutral-muted: #adadad;
+  --colors-neutral-muted: #adadad;  /* Disabled, shadows */
   --spacing-xs: 6px;
   --spacing-sm: 8px;
   --spacing-md: 20px;

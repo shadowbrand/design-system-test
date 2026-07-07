@@ -54,3 +54,9 @@ tokens.typography.Display.fontSize; // "84px"
 
 Do not edit these by hand — they are generated. Change tokens in Figma, push, and run
 `npm run build`.
+
+## For coding agents
+
+The package ships an [`AGENTS.md`](./AGENTS.md) index (progressive disclosure: rules
+inline, details by pointer). Point your agent at
+`node_modules/@shadowbrand/tokens/AGENTS.md`.

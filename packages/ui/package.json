@@ -14,7 +14,7 @@
     },
     "./styles.css": "./dist/ui.css"
   },
-  "files": ["dist"],
+  "files": ["dist", "AGENTS.md"],
   "sideEffects": ["*.css"],
   "scripts": {
     "build": "node build.mjs"

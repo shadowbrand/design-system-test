@@ -66,7 +66,7 @@ const tree = normalizeTypography(mergeSets(source));
 
 const flat = {};
 (function collect(node, path = '') {
-  if (isToken(node)) { flat[path] = { value: node.$value, type: node.$type }; return; }
+  if (isToken(node)) { flat[path] = { value: node.$value, type: node.$type, description: node.$description }; return; }
   if (node && typeof node === 'object') {
     for (const [k, v] of Object.entries(node)) {
       if (k.startsWith('$')) continue;
@@ -161,7 +161,8 @@ const varLines = [];
 const classBlocks = [];
 for (const [path, token] of Object.entries(flat)) {
   if (token.type === 'text') continue;                     // skip content copy
-  varLines.push(`  ${varNameFor(path)}: ${cssValue(token)};`);
+  const note = token.description ? `  /* ${token.description} */` : '';
+  varLines.push(`  ${varNameFor(path)}: ${cssValue(token)};${note}`);
 }
 for (const rootKey of compositeRoots) {
   const props = Object.entries(flat)

@@ -34,3 +34,9 @@ and type style resolves to a token, so it restyles automatically when the tokens
 ```bash
 npm run build   # esbuild: src -> dist/{index.js, ui.css, index.d.ts}
 ```
+
+## For coding agents
+
+The package ships an [`AGENTS.md`](./AGENTS.md) index (progressive disclosure: rules
+inline, details by pointer). Point your agent at
+`node_modules/@shadowbrand/ui/AGENTS.md`.
