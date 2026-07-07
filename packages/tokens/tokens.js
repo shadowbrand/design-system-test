@@ -46,6 +46,11 @@ export const tokens = {
   "paragraphIndent": {
     "0": "0px"
   },
+  "sm": "4px",
+  "md": "8px",
+  "drop-shadow": {
+    "sm": "[object Object]"
+  },
   "typography": {
     "Display": {
       "fontFamily": "\"Neue Haas Unica W1G\"",
