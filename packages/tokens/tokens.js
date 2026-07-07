@@ -4,7 +4,7 @@ export const tokens = {
     "neutral": {
       "default": "#ffffff",
       "onDefault": "#000000",
-      "accent": "#0059ff",
+      "accent": "#0058ff",
       "muted": "#adadad"
     }
   },
