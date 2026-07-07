@@ -15,7 +15,7 @@ npm install @shadowbrand/ui @shadowbrand/tokens react
 ```jsx
 import '@shadowbrand/tokens/css';   // the token variables
 import '@shadowbrand/ui/styles.css'; // the component styles
-import { Card } from '@shadowbrand/ui';
+import { Card, Button } from '@shadowbrand/ui';
 
 <Card
   title="Request card"
@@ -23,10 +23,13 @@ import { Card } from '@shadowbrand/ui';
   cta="Review request"
   onCtaClick={() => {}}
 />
+
+<Button onClick={() => {}}>Stand-alone action</Button>
 ```
 
-Layout (title → body → CTA) is fixed by the component; every colour, space, and type
-style resolves to a token, so it restyles automatically when the tokens change.
+Layout (title → body → CTA) is fixed by `Card`; its CTA is a `Button`, which also
+stands alone. Every colour, space, and type style resolves to a token, so components
+restyle automatically when the tokens change.
 
 ## Build
 
