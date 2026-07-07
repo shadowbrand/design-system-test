@@ -12,11 +12,13 @@ package's `AGENTS.md` index — this file is about keeping those correct.
   (`$description`) into `tokens.css` comments automatically. A Tokens Studio push
   therefore needs no index edit. Touch this file only when a rule changes or a new
   detail source appears.
-- `packages/ui/AGENTS.md` — fully hand-maintained. Any change to a component's
-  props, behavior, or the component list in `packages/ui/src/` must update its
-  index row in the same commit (a CI check enforces this). Keep rows to when-to-use
-  plus prop names — exact types live in each component's own generated
-  `dist/<Component>.d.ts`.
+- `packages/ui/AGENTS.md` — hand-maintained. When a component's props, behavior, or
+  the component list in `packages/ui/src/` change, update its index row in the same
+  commit. This is a convention, not CI-gated on purpose: a gate that's satisfied by
+  re-saving the file verifies nothing, and the rows mostly restate the generated
+  types. Keep rows to when-to-use plus prop names — exact types live in each
+  component's own generated `dist/<Component>.d.ts`. (If drift becomes a real problem,
+  generate the prop-name rows from the `.d.ts`, the way the tokens index is built.)
 
 ## packages/ui build
 
