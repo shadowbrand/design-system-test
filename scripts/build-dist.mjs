@@ -113,8 +113,25 @@ function withPx(value) {
   return String(value);                                    // already has a unit
 }
 
+// boxShadow tokens are composite: { x, y, blur, spread, color, type } (or an array
+// of them). Flatten into a CSS box-shadow string. `css` keeps a colour reference as
+// var(); otherwise it's resolved to a literal.
+function formatShadow(value, css) {
+  const list = Array.isArray(value) ? value : [value];
+  return list
+    .map((s) => {
+      const inset = s.type === 'innerShadow' || s.inset ? 'inset ' : '';
+      const dims = ['x', 'y', 'blur', 'spread'].map((k) => withPx(s[k] ?? 0)).join(' ');
+      let color = s.color;
+      if (isRef(color)) color = css ? `var(${cssVar(refPath(color))})` : resolveLiteral({ value: color, type: 'color' });
+      return `${inset}${dims} ${color}`;
+    })
+    .join(', ');
+}
+
 // Follow references to the base token, then format the literal.
 function resolveLiteral(token, seen = new Set()) {
+  if (token.type === 'boxShadow') return formatShadow(token.value, false);
   let t = token;
   while (isRef(t.value)) {
     const p = refPath(t.value);
@@ -126,6 +143,7 @@ function resolveLiteral(token, seen = new Set()) {
 }
 // CSS keeps references as var() so the alias chain stays visible.
 function cssValue(token) {
+  if (token.type === 'boxShadow') return formatShadow(token.value, true);
   return isRef(token.value) ? `var(${cssVar(refPath(token.value))})` : formatLiteral(token.value, token.type);
 }
 

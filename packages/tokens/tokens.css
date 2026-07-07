@@ -39,9 +39,9 @@
   --typography-body-font-size: var(--font-size-0);
   --typography-body-line-height: var(--line-heights-0);
   --typography-body-letter-spacing: var(--letter-spacing-2);
-  --sm: 4px;
-  --md: 8px;
-  --drop-shadow-sm: [object Object];
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --drop-shadow-sm: 0px 4px 4px 0px var(--colors-neutral-muted);
 }
 
 /* Typography utilities */

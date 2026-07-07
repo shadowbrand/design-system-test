@@ -46,10 +46,12 @@ export const tokens = {
   "paragraphIndent": {
     "0": "0px"
   },
-  "sm": "4px",
-  "md": "8px",
+  "radius": {
+    "sm": "4px",
+    "md": "8px"
+  },
   "drop-shadow": {
-    "sm": "[object Object]"
+    "sm": "0px 4px 4px 0px #adadad"
   },
   "typography": {
     "Display": {

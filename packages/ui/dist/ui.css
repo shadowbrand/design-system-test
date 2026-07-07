@@ -1,7 +1,7 @@
 /*
- * Component styles. Not one literal colour/space/radius that has a token — every
- * such value reads a variable from @shadowbrand/tokens. Consumers import this file
- * alongside the tokens CSS. (radius/elevation are LOCAL: no token for them yet.)
+ * Component styles. Not one literal colour/space/radius/shadow — every value reads a
+ * variable from @shadowbrand/tokens. Consumers import this file alongside the tokens CSS.
+ * (only the status pill's full-round radius stays local; there's no pill token.)
  */
 
 .dst-card {
@@ -12,8 +12,8 @@
   background: var(--colors-neutral-default);
   color: var(--colors-neutral-on-default);
   border: 1px solid var(--colors-neutral-muted);
-  border-radius: 12px;                      /* LOCAL: no radius token yet */
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06); /* LOCAL: no elevation token yet */
+  border-radius: var(--radius-md);
+  box-shadow: var(--drop-shadow-sm);
   max-width: 420px;
 }
 
@@ -37,7 +37,7 @@
   margin-top: var(--spacing-sm);
   padding: var(--spacing-sm) var(--spacing-md);
   border: none;
-  border-radius: 8px;                       /* LOCAL */
+  border-radius: var(--radius-md);
   cursor: pointer;
   background: var(--colors-neutral-accent);
   color: var(--colors-neutral-default);
