@@ -219,6 +219,28 @@ writeFileSync(
   'utf8'
 );
 
+// ---- keep the agent index costs honest --------------------------------------
+// packages/tokens/AGENTS.md is hand-written, but its Cost column prices the read
+// of each Detail file. Re-stamp those numbers from the real file sizes on every
+// build, so a Tokens Studio push that grows tokens.css updates the index without
+// anyone touching it.
+try {
+  const indexPath = resolve(outDir, 'AGENTS.md');
+  const est = (s) => `~${Math.max(50, Math.round(s.length / 4 / 50) * 50)}`;
+  const costs = {
+    'tokens.css': est(css),
+    'README.md': est(readFileSync(resolve(outDir, 'README.md'), 'utf8')),
+  };
+  let index = readFileSync(indexPath, 'utf8');
+  for (const [file, cost] of Object.entries(costs)) {
+    index = index.replace(
+      new RegExp(`(\\| ${file.replace('.', '\\.')} \\| )~?\\d+( \\|)`, 'g'),
+      `$1${cost}$2`
+    );
+  }
+  writeFileSync(indexPath, index, 'utf8');
+} catch {} // no index yet — nothing to stamp
+
 // ---- integrity report ------------------------------------------------------
 
 const dangling = Object.entries(flat)
