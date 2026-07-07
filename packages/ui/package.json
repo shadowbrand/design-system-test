@@ -17,8 +17,7 @@
   "files": ["dist"],
   "sideEffects": ["*.css"],
   "scripts": {
-    "build": "node build.mjs",
-    "prepublishOnly": "node build.mjs"
+    "build": "node build.mjs"
   },
   "peerDependencies": {
     "react": ">=18"
