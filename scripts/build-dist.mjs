@@ -227,6 +227,19 @@ if (dangling.length) {
   console.error(`✗ unresolved references:\n  ${dangling.join('\n  ')}`);
   process.exit(1);
 }
+
+// Build guard: refuse to ship output that shows a token type wasn't formatted.
+// "[object Object]" means a composite (shadow/typography) leaked through unflattened;
+// "undefined"/"NaN" mean a value didn't resolve. Catch it here, not on npm.
+const BAD = ['[object Object]', 'undefined', 'NaN'];
+for (const artifact of [css, JSON.stringify(resolved)]) {
+  const hit = BAD.find((m) => artifact.includes(m));
+  if (hit) {
+    console.error(`✗ build guard: output contains "${hit}" — a token type isn't being formatted. Not publishing broken tokens.`);
+    process.exit(1);
+  }
+}
+
 const cssCount = varLines.length;
 console.log(
   `✓ dist built → packages/tokens/{tokens.css, tokens.json, tokens.js}\n` +
