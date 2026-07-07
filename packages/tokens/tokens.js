@@ -17,17 +17,17 @@ export const tokens = {
     "neue-haas-unica-w1g": "\"Neue Haas Unica W1G\""
   },
   "lineHeights": {
-    "0": "28px",
-    "1": "55px",
-    "2": "84px"
+    "0": "18px",
+    "1": "24px",
+    "2": "48px"
   },
   "fontWeights": {
     "neue-haas-unica-w1g-0": "400"
   },
   "fontSize": {
-    "0": "22px",
-    "1": "55px",
-    "2": "84px"
+    "0": "14px",
+    "1": "20px",
+    "2": "46px"
   },
   "letterSpacing": {
     "0": "-0.05em",
@@ -57,22 +57,22 @@ export const tokens = {
     "Display": {
       "fontFamily": "\"Neue Haas Unica W1G\"",
       "fontWeight": "400",
-      "fontSize": "84px",
-      "lineHeight": "84px",
+      "fontSize": "46px",
+      "lineHeight": "48px",
       "letterSpacing": "-0.05em"
     },
     "Heading": {
       "fontFamily": "\"Neue Haas Unica W1G\"",
       "fontWeight": "400",
-      "fontSize": "55px",
-      "lineHeight": "55px",
+      "fontSize": "20px",
+      "lineHeight": "24px",
       "letterSpacing": "-0.01em"
     },
     "Body": {
       "fontFamily": "\"Neue Haas Unica W1G\"",
       "fontWeight": "400",
-      "fontSize": "22px",
-      "lineHeight": "28px",
+      "fontSize": "14px",
+      "lineHeight": "18px",
       "letterSpacing": "0.01em"
     }
   }
