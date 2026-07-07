@@ -1,0 +1,40 @@
+{
+  "name": "@shadowbrand/ui",
+  "version": "0.1.0",
+  "description": "React components for the design system, built on @shadowbrand/tokens.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./styles.css": "./dist/ui.css"
+  },
+  "files": ["dist"],
+  "sideEffects": ["*.css"],
+  "scripts": {
+    "build": "node build.mjs",
+    "prepublishOnly": "node build.mjs"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "dependencies": {
+    "@shadowbrand/tokens": "^0.1.2"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shadowbrand/design-system-test.git",
+    "directory": "packages/ui"
+  }
+}

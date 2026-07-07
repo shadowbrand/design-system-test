@@ -1,0 +1,48 @@
+/*
+ * Component styles. Not one literal colour/space/radius that has a token — every
+ * such value reads a variable from @shadowbrand/tokens. Consumers import this file
+ * alongside the tokens CSS. (radius/elevation are LOCAL: no token for them yet.)
+ */
+
+.dst-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: var(--colors-neutral-default);
+  color: var(--colors-neutral-on-default);
+  border: 1px solid var(--colors-neutral-muted);
+  border-radius: 12px;                      /* LOCAL: no radius token yet */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06); /* LOCAL: no elevation token yet */
+  max-width: 420px;
+}
+
+.dst-card__title { margin: 0; }
+
+.dst-card__status {
+  align-self: flex-start;
+  padding: 2px var(--spacing-sm);
+  border-radius: 999px;                     /* LOCAL */
+  font-size: 12px;                          /* LOCAL: no caption token */
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: var(--colors-neutral-muted);
+  color: var(--colors-neutral-default);
+}
+
+.dst-card__body { margin: 0; }
+
+.dst-card__cta {
+  align-self: flex-start;
+  margin-top: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  border-radius: 8px;                       /* LOCAL */
+  cursor: pointer;
+  background: var(--colors-neutral-accent);
+  color: var(--colors-neutral-default);
+  font-family: var(--typography-body-font-family);
+  font-size: 15px;                          /* LOCAL: body token is large for a button */
+}
+
+.dst-card__cta:hover { filter: brightness(0.92); }
