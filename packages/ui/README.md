@@ -19,15 +19,14 @@ import { Card } from '@shadowbrand/ui';
 
 <Card
   title="Request card"
-  status="In review"
   body="Composed from tokens — nothing hard-codes a colour or a gap."
   cta="Review request"
   onCtaClick={() => {}}
 />
 ```
 
-Layout (title → status → body → CTA) is fixed by the component; every colour, space,
-and type style resolves to a token, so it restyles automatically when the tokens change.
+Layout (title → body → CTA) is fixed by the component; every colour, space, and type
+style resolves to a token, so it restyles automatically when the tokens change.
 
 ## Build
 

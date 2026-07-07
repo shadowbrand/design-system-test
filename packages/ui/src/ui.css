@@ -1,7 +1,7 @@
 /*
  * Component styles. Not one literal colour/space/radius/shadow — every value reads a
  * variable from @shadowbrand/tokens. Consumers import this file alongside the tokens CSS.
- * (only the status pill's full-round radius stays local; there's no pill token.)
+ * (only the CTA font-size stays local; there's no button/label type token.)
  */
 
 .dst-card {
@@ -18,17 +18,6 @@
 }
 
 .dst-card__title { margin: 0; }
-
-.dst-card__status {
-  align-self: flex-start;
-  padding: 2px var(--spacing-sm);
-  border-radius: 999px;                     /* LOCAL */
-  font-size: 12px;                          /* LOCAL: no caption token */
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  background: var(--colors-neutral-muted);
-  color: var(--colors-neutral-default);
-}
 
 .dst-card__body { margin: 0; }
 

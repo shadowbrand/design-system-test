@@ -3,8 +3,6 @@ import * as React from 'react';
 export interface CardProps {
   /** Heading text (rendered with the Heading type style). */
   title?: string;
-  /** Short status label shown under the title. */
-  status?: string;
   /** Body copy (rendered with the Body type style). */
   body?: string;
   /** Call-to-action button label. Omit to hide the button. */
