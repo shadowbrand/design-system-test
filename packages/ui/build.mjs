@@ -1,12 +1,14 @@
-// Compiles the component library: JSX -> ESM, plus the CSS and type declarations.
-// react is kept external (a peer dependency); tokens arrive via the consumer's CSS.
+// Compiles the component library. esbuild bundles the TSX to ESM and copies the
+// CSS; tsc emits the .d.ts (one per component) — run via the `build` script after
+// this. react is kept external (a peer dependency); tokens arrive via the
+// consumer's CSS.
 import { build } from 'esbuild';
-import { cpSync, mkdirSync, readdirSync } from 'node:fs';
+import { cpSync, mkdirSync } from 'node:fs';
 
 mkdirSync('dist', { recursive: true });
 
 await build({
-  entryPoints: ['src/index.jsx'],
+  entryPoints: ['src/index.ts'],
   bundle: true,
   format: 'esm',
   jsx: 'automatic',
@@ -15,9 +17,5 @@ await build({
 });
 
 cpSync('src/ui.css', 'dist/ui.css');
-// Copy every type file (barrel + one per component) so adding a component needs
-// no build edit — drop a <Component>.d.ts in src/ and it ships.
-const types = readdirSync('src').filter((f) => f.endsWith('.d.ts'));
-for (const f of types) cpSync(`src/${f}`, `dist/${f}`);
 
-console.log(`✓ @shadowbrand/ui built → dist/{index.js, ui.css, ${types.join(', ')}}`);
+console.log('✓ @shadowbrand/ui bundled → dist/{index.js, ui.css}  (types emitted by tsc)');

@@ -1,4 +1,4 @@
-// src/Button.jsx
+// src/Button.tsx
 import { jsx } from "react/jsx-runtime";
 function Button({ children, onClick, disabled = false, type = "button" }) {
   return /* @__PURE__ */ jsx(
@@ -13,7 +13,7 @@ function Button({ children, onClick, disabled = false, type = "button" }) {
   );
 }
 
-// src/Card.jsx
+// src/Card.tsx
 import { jsx as jsx2, jsxs } from "react/jsx-runtime";
 function Card({ title, body, cta, onCtaClick }) {
   return /* @__PURE__ */ jsxs("article", { className: "dst-card", children: [

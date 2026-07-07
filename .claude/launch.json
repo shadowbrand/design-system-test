@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "ui-preview",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "packages/ui", "run", "preview"],
+      "port": 8000
+    }
+  ]
+}

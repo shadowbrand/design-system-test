@@ -7,12 +7,25 @@ name: Checks
 
 on:
   pull_request:
-    paths: ["packages/ui/src/**"]
+    paths: ["packages/ui/**"]
   push:
     branches: [main]
-    paths: ["packages/ui/src/**"]
+    paths: ["packages/ui/**"]
 
 jobs:
+  ui-typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+      - name: tsc typecheck @shadowbrand/ui
+        working-directory: packages/ui
+        run: |
+          npm ci
+          npm run typecheck
+
   ui-agents-index:
     runs-on: ubuntu-latest
     steps:

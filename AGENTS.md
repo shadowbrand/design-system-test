@@ -14,8 +14,17 @@ package's `AGENTS.md` index — this file is about keeping those correct.
   detail source appears.
 - `packages/ui/AGENTS.md` — fully hand-maintained. Any change to a component's
   props, behavior, or the component list in `packages/ui/src/` must update its
-  index row in the same commit. Keep rows to when-to-use plus prop names — types
-  and details stay in `dist/index.d.ts`.
+  index row in the same commit (a CI check enforces this). Keep rows to when-to-use
+  plus prop names — exact types live in each component's own generated
+  `dist/<Component>.d.ts`.
+
+## packages/ui build
+
+Components are authored in `.tsx`. `npm run build` runs esbuild (bundle → `dist/index.js`,
+copy `ui.css`) then `tsc` (emit one `.d.ts` per component; `index.d.ts` is a barrel).
+Never hand-edit `dist/` — the `.d.ts` are generated, so types can't drift from the code.
+`npm run typecheck` (also a CI job) checks src; `npm run preview` serves a dev-only
+esbuild page (`packages/ui/preview/`, not published) that renders components from source.
 
 ## Rules
 

@@ -31,11 +31,17 @@ Layout (title → body → CTA) is fixed by `Card`; its CTA is a `Button`, which
 stands alone. Every colour, space, and type style resolves to a token, so components
 restyle automatically when the tokens change.
 
-## Build
+## Develop
 
 ```bash
-npm run build   # esbuild: src -> dist/{index.js, ui.css, index.d.ts}
+npm run preview     # esbuild dev server with live reload → http://localhost:8000
+npm run typecheck   # tsc --noEmit over src
+npm run build       # esbuild bundles TSX → dist/{index.js, ui.css}; tsc emits the .d.ts
 ```
+
+Components are authored in `.tsx`; `tsc` generates the per-component `.d.ts`, so the
+types can't drift from the implementation. The preview renders the components from
+source against the local tokens — no publish needed to try a change.
 
 ## For coding agents
 

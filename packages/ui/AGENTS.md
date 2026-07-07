@@ -1,7 +1,8 @@
 # @shadowbrand/ui — agent index
 
 Progressive disclosure: scan the index, act on the entry itself when Detail is `—`,
-and read the Detail source only when you need more. Costs are approximate tokens.
+and read the Detail source only when you need more. Each component's exact types are
+its own `dist/<Component>.d.ts`. Costs are approximate tokens.
 
 | ID  | T | Entry | Detail | Cost |
 |-----|---|-------|--------|------|

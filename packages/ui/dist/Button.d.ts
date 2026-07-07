@@ -1,14 +1,12 @@
-import * as React from 'react';
-
+import type { ReactNode } from 'react';
 export interface ButtonProps {
-  /** Button label. */
-  children?: React.ReactNode;
-  /** Click handler. */
-  onClick?: () => void;
-  /** Disabled state: muted background, no hover, not clickable. Defaults to false. */
-  disabled?: boolean;
-  /** Native button type. Defaults to "button". */
-  type?: 'button' | 'submit' | 'reset';
+    /** Button label. */
+    children?: ReactNode;
+    /** Click handler. */
+    onClick?: () => void;
+    /** Disabled state: muted background, no hover, not clickable. Defaults to false. */
+    disabled?: boolean;
+    /** Native button type. Defaults to "button". */
+    type?: 'button' | 'submit' | 'reset';
 }
-
-export declare function Button(props: ButtonProps): React.JSX.Element;
+export declare function Button({ children, onClick, disabled, type }: ButtonProps): import("react").JSX.Element;
