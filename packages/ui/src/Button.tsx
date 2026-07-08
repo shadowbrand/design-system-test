@@ -18,7 +18,7 @@ export interface ButtonProps {
 export function Button({ children, onClick, disabled = false, type = 'button' }: ButtonProps) {
   return (
     <button
-      className="dst-button text-body"
+      className="ds-button text-body"
       type={type}
       onClick={onClick}
       disabled={disabled}

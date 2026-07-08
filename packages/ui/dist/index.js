@@ -4,7 +4,7 @@ function Button({ children, onClick, disabled = false, type = "button" }) {
   return /* @__PURE__ */ jsx(
     "button",
     {
-      className: "dst-button text-body",
+      className: "ds-button text-body",
       type,
       onClick,
       disabled,
@@ -21,10 +21,10 @@ function Card({
   cta = "Card CTA",
   onCtaClick
 }) {
-  return /* @__PURE__ */ jsxs("article", { className: "dst-card", children: [
-    /* @__PURE__ */ jsx2("header", { className: "dst-card__header", children: /* @__PURE__ */ jsx2("h3", { className: "dst-card__title text-heading", children: title }) }),
-    /* @__PURE__ */ jsx2("p", { className: "dst-card__body text-body", children: body }),
-    /* @__PURE__ */ jsx2("footer", { className: "dst-card__footer", children: /* @__PURE__ */ jsx2(Button, { onClick: onCtaClick, children: cta }) })
+  return /* @__PURE__ */ jsxs("article", { className: "ds-card", children: [
+    /* @__PURE__ */ jsx2("header", { className: "ds-card__header", children: /* @__PURE__ */ jsx2("h3", { className: "ds-card__title text-heading", children: title }) }),
+    /* @__PURE__ */ jsx2("p", { className: "ds-card__body text-body", children: body }),
+    /* @__PURE__ */ jsx2("footer", { className: "ds-card__footer", children: /* @__PURE__ */ jsx2(Button, { onClick: onCtaClick, children: cta }) })
   ] });
 }
 export {

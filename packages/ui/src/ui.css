@@ -4,10 +4,10 @@
  * the tokens CSS.
  */
 
-.dst-card {
+.ds-card {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-md);
   padding: var(--spacing-md);
   background: var(--colors-neutral-default);
   color: var(--colors-neutral-on-default);
@@ -17,13 +17,17 @@
   max-width: 420px;
 }
 
-.dst-card__title { margin: 0; }
+.ds-card__title {
+  margin: 0;
+}
 
-.dst-card__body { margin: 0; }
+.ds-card__body {
+  margin: 0;
+}
 
 /* Button (also used as the Card CTA). */
-.dst-button {
-  align-self: flex-start;                   /* don't stretch inside a flex parent */
+.ds-button {
+  align-self: flex-start; /* don't stretch inside a flex parent */
   padding: var(--spacing-sm) var(--spacing-md);
   border: none;
   border-radius: var(--radius-md);
@@ -32,9 +36,11 @@
   color: var(--colors-neutral-default);
 }
 
-.dst-button:hover:not(:disabled) { background: var(--colors-neutral-accent); }
+.ds-button:hover:not(:disabled) {
+  background: var(--colors-neutral-accent);
+}
 
-.dst-button:disabled {
+.ds-button:disabled {
   background: var(--colors-neutral-muted);
   cursor: not-allowed;
 }

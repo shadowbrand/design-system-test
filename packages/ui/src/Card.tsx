@@ -23,12 +23,12 @@ export function Card({
   onCtaClick,
 }: CardProps) {
   return (
-    <article className="dst-card">
-      <header className="dst-card__header">
-        <h3 className="dst-card__title text-heading">{title}</h3>
+    <article className="ds-card">
+      <header className="ds-card__header">
+        <h3 className="ds-card__title text-heading">{title}</h3>
       </header>
-      <p className="dst-card__body text-body">{body}</p>
-      <footer className="dst-card__footer">
+      <p className="ds-card__body text-body">{body}</p>
+      <footer className="ds-card__footer">
         <Button onClick={onCtaClick}>{cta}</Button>
       </footer>
     </article>
