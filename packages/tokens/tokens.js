@@ -11,7 +11,7 @@ export const tokens = {
   "spacing": {
     "xs": "6px",
     "sm": "8px",
-    "md": "20px"
+    "md": "24px"
   },
   "fontFamilies": {
     "neue-haas-unica-w1g": "\"Neue Haas Unica W1G\""
