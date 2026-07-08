@@ -23,12 +23,11 @@ jobs:
 
       - uses: actions/setup-node@v5
         with:
-          node-version: "22"
+          # Node 24 bundles npm >= 11.5.1 (needed for trusted publishing). We DON'T
+          # `npm i -g npm@latest` — that in-place self-upgrade intermittently corrupts
+          # npm and drops bundled deps like sigstore, breaking `publish --provenance`.
+          node-version: "24"
           registry-url: "https://registry.npmjs.org"
-
-      # Trusted publishing needs npm >= 11.5.1; the runner may ship an older one.
-      - name: Update npm
-        run: npm install -g npm@latest
 
       - name: Bump patch version
         working-directory: packages/tokens
