@@ -1,9 +1,11 @@
-# Publishing `@shadowbrand/tokens`
+# Publishing
 
-The package is set up to publish to the **public npm registry** via **trusted publishing**
-(no stored npm token). Here's the one-time setup and the ongoing flow.
+Both packages publish to the **public npm registry** via **trusted publishing** (no stored
+npm token). The one difference is the version bump: **tokens** auto-patch-bumps (Figma value
+changes are non-breaking), while **ui** takes a bump *you* choose, because code changes can be
+breaking. `@shadowbrand/tokens` is covered first; `@shadowbrand/ui` follows.
 
-## One-time setup
+## `@shadowbrand/tokens` — one-time setup
 
 1. **npm account + 2FA** — sign in on [npmjs.com](https://www.npmjs.com) and enable 2FA
    (required to publish).
@@ -46,6 +48,37 @@ In `design-system-test-consumer/package.json`, replace the local link:
 ```
 
 Run `npm install`. The import code doesn't change — it's now a versioned registry dependency.
+
+## `@shadowbrand/ui`
+
+Same trusted-publishing setup, but **you choose the version bump** — ui is code, and its
+changes can be breaking (a removed prop, a renamed `ds-*` class), which consumers' `^` ranges
+must be told about. Auto-patch (as tokens uses) would be wrong here.
+
+**One-time setup**
+
+1. First publish manually so the package exists on the registry:
+
+   ```bash
+   cd packages/ui
+   npm ci && npm run build
+   npm login                     # browser + 2FA
+   npm publish                   # public via publishConfig.access
+   ```
+
+2. Register the trusted publisher on npmjs.com → `@shadowbrand/ui` → **Settings → Trusted
+   Publisher → GitHub Actions**:
+   - Organization / user: `shadowbrand`
+   - Repository: `design-system-test`
+   - Workflow filename: `publish-ui.yml`
+   - Environment: *(leave blank)*
+
+**Ongoing**
+
+Run the **Publish ui** workflow (Actions → Publish ui → Run workflow) and pick the bump:
+`patch` (fix), `minor` (added component/prop), `major` (removed / renamed / behavior change —
+breaking). CI typechecks, builds, runs `npm version <bump>`, commits the bump plus a
+`ui-v<version>` tag back to main, and publishes with a provenance attestation.
 
 ## Notes
 
