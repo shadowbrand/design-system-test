@@ -1,0 +1,15 @@
+{
+  "name": "consumer-check",
+  "private": true,
+  "type": "module",
+  "description": "Not published. A minimal fake consumer that installs @shadowbrand/ui by name and typechecks against it — proves the generated .d.ts resolve through the exports map before we publish.",
+  "scripts": {
+    "check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@shadowbrand/ui": "file:../packages/ui",
+    "@types/react": "^18.3.0",
+    "react": "^18.3.0",
+    "typescript": "^5.6.0"
+  }
+}

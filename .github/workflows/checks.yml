@@ -2,10 +2,10 @@ name: Checks
 
 on:
   pull_request:
-    paths: ["packages/ui/**"]
+    paths: ["packages/ui/**", "consumer-check/**"]
   push:
     branches: [main]
-    paths: ["packages/ui/**"]
+    paths: ["packages/ui/**", "consumer-check/**"]
 
 jobs:
   ui-typecheck:
@@ -20,3 +20,23 @@ jobs:
         run: |
           npm ci
           npm run typecheck
+
+  # Proves the generated .d.ts resolve for a real consumer (exports map + barrel
+  # re-exports), not just when tsc compiles the package itself.
+  consumer-typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+      - name: Build @shadowbrand/ui
+        working-directory: packages/ui
+        run: |
+          npm ci
+          npm run build
+      - name: Typecheck a fake consumer against the built package
+        working-directory: consumer-check
+        run: |
+          npm install
+          npm run check

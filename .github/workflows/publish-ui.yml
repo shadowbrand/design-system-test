@@ -51,6 +51,13 @@ jobs:
         working-directory: packages/ui
         run: npm run build
 
+      # Gate: a real consumer must be able to typecheck against the built package.
+      - name: Consumer typecheck
+        working-directory: consumer-check
+        run: |
+          npm install
+          npm run check
+
       - name: Bump version (${{ inputs.bump }})
         working-directory: packages/ui
         run: npm version ${{ inputs.bump }} --no-git-tag-version

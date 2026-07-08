@@ -24,4 +24,6 @@ package ships its own consumer-facing `AGENTS.md` index; this file is for mainta
 
 `.tsx` source → esbuild bundles `dist/index.js` + copies `ui.css`, then `tsc` emits one
 `.d.ts` per component (`index.d.ts` is a barrel). `npm run typecheck` (a CI job) checks src;
-`npm run preview` serves a dev-only page from source.
+`npm run preview` serves a dev-only page from source. `consumer-check/` (repo root, not
+published) typechecks a fake consumer against the built package — a CI job and a publish
+gate, so the shipped `.d.ts` are proven to resolve through the exports map.

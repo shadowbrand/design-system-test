@@ -1,0 +1,13 @@
+{
+  "comment": "nodenext is the strictest resolver for the .js re-export specifiers our barrel emits — if types resolve here, bundler/node consumers resolve too.",
+  "compilerOptions": {
+    "strict": true,
+    "jsx": "react-jsx",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "lib": ["ES2020", "DOM"],
+    "skipLibCheck": true,
+    "noEmit": true
+  },
+  "include": ["index.tsx"]
+}
