@@ -9,7 +9,7 @@ package ships its own consumer-facing `AGENTS.md` index; this file is for mainta
 - **Never hand-edit generated files** — all of `packages/tokens/` except `package.json` /
   `README.md` / `AGENTS.md`, and all of `packages/ui/dist/`.
 - **Rebuild + commit together** — after changing `tokens.json` or a build, run `npm run build`
-  and commit the regenerated output with the source.
+  and commit the regenerated output with the source (a CI job fails if they drift).
 - **Don't bump `packages/tokens` version** — CI does it on publish.
 
 ## Keeping the agent indices correct

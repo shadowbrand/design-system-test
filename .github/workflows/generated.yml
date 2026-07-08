@@ -1,0 +1,54 @@
+name: Generated output up to date
+
+# Fails when the committed build artifacts don't match a fresh build from source —
+# e.g. tokens.json changed without running `npm run build`, ui src changed without
+# rebuilding dist, or a generated file was hand-edited. Keeps stale artifacts (and
+# the file-linked consumer) off main. See the root AGENTS.md "rebuild + commit" rule.
+
+on:
+  pull_request:
+    paths:
+      - "tokens.json"
+      - "scripts/build-dist.mjs"
+      - "packages/tokens/**"
+      - "packages/ui/src/**"
+      - "packages/ui/build.mjs"
+      - "packages/ui/tsconfig.json"
+      - "packages/ui/dist/**"
+  push:
+    branches: [main]
+    paths:
+      - "tokens.json"
+      - "scripts/build-dist.mjs"
+      - "packages/tokens/**"
+      - "packages/ui/src/**"
+      - "packages/ui/build.mjs"
+      - "packages/ui/tsconfig.json"
+      - "packages/ui/dist/**"
+
+jobs:
+  up-to-date:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+
+      - name: Rebuild tokens (zero-dep)
+        run: npm run build
+
+      - name: Rebuild ui
+        working-directory: packages/ui
+        run: |
+          npm ci
+          npm run build
+
+      - name: Fail if a fresh build differs from what's committed
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "::error::Generated files are stale. Run 'npm run build' at the root and in packages/ui, then commit the result."
+            git status --porcelain
+            git --no-pager diff
+            exit 1
+          fi
