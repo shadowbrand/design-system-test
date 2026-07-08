@@ -16,18 +16,29 @@ build runs in CI and publishes a versioned package; consumers just bump the vers
 
 ## Consume
 
-**CSS** — import once, then reference variables:
+**CSS** — import once, then reference variables in your own styles (layout, page
+chrome, custom elements):
 
 ```css
 @import "@shadowbrand/tokens/css";
 
-.card {
+body {
   background: var(--colors-neutral-default);
   color: var(--colors-neutral-on-default);
-  padding: var(--spacing-md);
 }
-.card__cta { background: var(--colors-neutral-accent); }
+
+.toolbar {
+  display: flex;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+}
+
+a { color: var(--colors-neutral-accent); }
 ```
+
+For ready-made components (Card, Button) built on these tokens, use
+[`@shadowbrand/ui`](../ui/README.md) rather than hand-styling.
 
 Composite type styles ship as utility classes too:
 
